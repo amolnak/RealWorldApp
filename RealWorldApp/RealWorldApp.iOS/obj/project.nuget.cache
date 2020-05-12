@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "Yegx8Hdm3CYQGH7w4bDk+DmIfdGLgNCth0Wd/6SQHQjdEl+B3rbh6xwxyojon6i8UxANvQpdTq3mzjYsI8YycA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Amol\\Desktop\\Food-App-master\\RealWorldApp\\RealWorldApp\\RealWorldApp.iOS\\FoodApp.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Amol\\.nuget\\packages\\epoch.unix.timestamp\\2.0.0\\epoch.unix.timestamp.2.0.0.nupkg.sha512",
+    "C:\\Users\\Amol\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Amol\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.3.1\\xamarin.essentials.1.3.1.nupkg.sha512",
+    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\4.4.0.991265\\xamarin.forms.4.4.0.991265.nupkg.sha512"
+  ],
+  "logs": []
+}
