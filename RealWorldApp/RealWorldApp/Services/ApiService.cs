@@ -29,23 +29,24 @@ namespace FoodApp.Services
             return true;
         }
 
-        public static async Task<bool> Login(string email, string password)
+        public static async Task<bool> Login(string username, string password)
         {
             var login = new Login()
             {
-                Email = email,
+                UserName = username,
                 Password = password
             };
 
             var httpClient = new HttpClient();
             var json = JsonConvert.SerializeObject(login);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await httpClient.PostAsync(AppSettings.ApiUrl + "api/Accounts/Login", content);
+            var response = await httpClient.PostAsync(AppSettings.ApiUrl + "api/Accounts/AdminLogin", content);
             if (!response.IsSuccessStatusCode) return false;
             var jsonResult = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<Token>(jsonResult);
             Preferences.Set("accessToken", result.access_token);
-            Preferences.Set("userId", result.user_Id);
+            Preferences.Set("tokenType", result.token_type);
+            Preferences.Set("adminID", result.user_Id);
             Preferences.Set("userName", result.user_name);
             Preferences.Set("tokenExpirationTime", result.expiration_Time);
             Preferences.Set("currentTime", UnixTime.GetCurrentTime());

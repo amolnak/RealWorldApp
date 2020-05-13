@@ -42,11 +42,11 @@
                            FontSize="Title"
                            HorizontalTextAlignment="Center"
                            TextColor="#CE0B06" />
-                    <Entry Placeholder="Email"
+                    <Entry Placeholder="User Name"
                            PlaceholderColor="#80574D"
                            TextColor="#80574D"
-                           x:Name="EntEmail"
-                           Keyboard="Email" />
+                           x:Name="EntUserName"
+                           Keyboard="Default" />
                     <Entry Placeholder="Password"
                            PlaceholderColor="#80574D"
                            TextColor="#80574D"

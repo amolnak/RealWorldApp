@@ -25,8 +25,8 @@ namespace FoodApp.Pages
 
         private async void BtnLogin_Clicked(object sender, EventArgs e)
         {
-            var response = await ApiService.Login(EntEmail.Text, EntPassword.Text);
-            Preferences.Set("email", EntEmail.Text);
+            var response = await ApiService.Login(EntUserName.Text, EntPassword.Text);
+            Preferences.Set("username", EntUserName.Text);
             Preferences.Set("password", EntPassword.Text);
 
             if (response)
