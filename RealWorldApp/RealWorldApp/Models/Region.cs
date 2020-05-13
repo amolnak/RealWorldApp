@@ -1,6 +1,6 @@
 using System;
 
-namespace FoodApi.Models
+namespace FoodApp.Models
 {
     public class Region
     {
