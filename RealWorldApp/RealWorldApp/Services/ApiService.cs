@@ -13,13 +13,26 @@ namespace FoodApp.Services
 {
     public static class ApiService
     {
-        public static async Task<bool> RegisterUser(string name, string email, string password)
+        public static async Task<bool> RegisterUser(string name, string email, string password, string Fname, string Lname, string Pn1, string Pn2, string Address, string Gender, string DOB, Guid City, Guid Region,int age)
         {
-            var register = new Register()
+            var register = new Users()
             {
-                Name = name,
+                Username = name,
                 Email = email,
-                Password = password
+                Password = password,
+                FName = Fname,
+                LName = Lname,
+                Phone1 = Pn1,
+                Phone2 = Pn2,
+                Address = Address,
+                Gender = Gender,
+                Age = age,
+                BirthDate = DateTime.Parse(DOB),
+                DateRegistered = DateTime.Now,
+                CityID = City,
+                RegionID = Region,
+                Active = "Y"
+
             };
             var httpClient = new HttpClient();
             var json = JsonConvert.SerializeObject(register);
@@ -167,6 +180,29 @@ namespace FoodApp.Services
             var response = await httpClient.GetStringAsync(AppSettings.ApiUrl + "api/Orders/OrderDetails/" + orderId);
             return JsonConvert.DeserializeObject<List<Order>>(response);
         }
+        //amol naik
+        public static async Task<List<Region>> GetRegions()
+        {
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetStringAsync(AppSettings.ApiUrl + "api/Region/GetRegion");
+            return JsonConvert.DeserializeObject<List<Region>>(response);
+        }
+
+        public static async Task<List<City>> GetCitys()
+        {
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetStringAsync(AppSettings.ApiUrl + "api/City/GetCity");
+            return JsonConvert.DeserializeObject<List<City>>(response);
+        }
+
+        //public static async Task<List<Category>> GetCategories()
+        //{
+        //    await TokenValidator.CheckTokenValidity();
+        //    var httpClient = new HttpClient();
+        //    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("accessToken", string.Empty));
+        //    var response = await httpClient.GetStringAsync(AppSettings.ApiUrl + "api/Categories");
+        //    return JsonConvert.DeserializeObject<List<Category>>(response);
+        //}
     }
 
     public static class TokenValidator
@@ -180,8 +216,9 @@ namespace FoodApp.Services
             {
                 var email = Preferences.Get("email", string.Empty);
                 var password = Preferences.Get("password", string.Empty);
-                await ApiService.Login(email,password);
+                await ApiService.Login(email, password);
             }
         }
     }
+
 }

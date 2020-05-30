@@ -48,6 +48,43 @@
                                IsPassword="True"
                                x:Name="EntConfirmPassword"
                                Keyboard="Default" />
+                        <Entry Placeholder="First Name"
+                               PlaceholderColor="#80574D"
+                               TextColor="#80574D"
+                               x:Name="EntFname"
+                               Keyboard="Default" />
+                        <Entry Placeholder="Last Name"
+                               PlaceholderColor="#80574D"
+                               TextColor="#80574D"
+                               x:Name="EntLname"
+                               Keyboard="Default" />
+                        <Entry Placeholder="Phone No 1"
+                               PlaceholderColor="#80574D"
+                               TextColor="#80574D"
+                               x:Name="EntPN1"
+                               Keyboard="Default" />
+                        <Entry Placeholder="Phone No 2"
+                               PlaceholderColor="#80574D"
+                               TextColor="#80574D"
+                               x:Name="EntPN2"
+                               Keyboard="Default" />
+                        <Entry Placeholder="Address"
+                               PlaceholderColor="#80574D"
+                               TextColor="#80574D"
+                               x:Name="EntAddress"
+                               Keyboard="Default" />
+                        <Picker x:Name="Gender" Title="Gender" TitleColor="#80574D" TextColor="#80574D" HorizontalOptions="FillAndExpand">
+                            <Picker.Items>
+                                <x:String>Male</x:String>
+                                <x:String>Female</x:String>
+                            </Picker.Items>
+                        </Picker> 
+                        <Label Text="Birth Date" TextColor="#80574D"  />
+                        <DatePicker x:Name="EntBirthDate"  TextColor="#80574D"  />
+                        <Picker x:Name="pickerCity" Title="Select a City" TitleColor="#80574D" TextColor="#80574D" HorizontalOptions="FillAndExpand"  />
+
+                        <Picker x:Name="pickerRegion" Title="Select a Region" TitleColor="#80574D" TextColor="#80574D" HorizontalOptions="FillAndExpand" />
+
                         <Label Margin="20,0,20,0"
                                FontSize="Small"
                                HorizontalTextAlignment="Center"
