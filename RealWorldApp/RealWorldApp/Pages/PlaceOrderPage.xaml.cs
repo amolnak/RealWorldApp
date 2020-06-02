@@ -27,7 +27,7 @@ namespace FoodApp.Pages
             order.fullName = EntName.Text;
             order.phone = EntPhone.Text;
             order.address = EntAddress.Text;
-            order.userId = Preferences.Get("userId", 0);
+            order.userId = new Guid(Preferences.Get("userId", ""));
             order.orderTotal = _totalPrice;
 
             var response = await ApiService.PlaceOrder(order);

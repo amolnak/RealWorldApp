@@ -25,7 +25,7 @@ namespace FoodApp.Pages
 
         private async void GetOrderItems()
         {
-            var orders = await ApiService.GetOrdersByUser(Preferences.Get("userId", 0));
+            var orders = await ApiService.GetOrdersByUser(new Guid(Preferences.Get("userId", "")));
             foreach (var order in orders)
             {
                 OrdersCollection.Add(order);

@@ -5,7 +5,7 @@ namespace FoodApp.Models
     public class UserSubscriptions
     {
         public Guid UserSubscriptionID { get; set; }
-        public Guid UserID { get; set; }
+        public string userId { get; set; }
         public Guid ItemID { get; set; }
         public int? Quantity { get; set; }
         public int? ItemAddOnQty { get; set; }

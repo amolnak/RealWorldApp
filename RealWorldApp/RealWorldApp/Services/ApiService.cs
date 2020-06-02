@@ -59,6 +59,7 @@ namespace FoodApp.Services
             var result = JsonConvert.DeserializeObject<Token>(jsonResult);
             Preferences.Set("accessToken", result.access_token);
             Preferences.Set("tokenType", result.token_type);
+            Preferences.Set("userId", result.user_Id);
             Preferences.Set("adminID", result.user_Id);
             Preferences.Set("userName", result.user_name);
             Preferences.Set("tokenExpirationTime", result.expiration_Time);
@@ -68,11 +69,18 @@ namespace FoodApp.Services
 
         public static async Task<List<Category>> GetCategories()
         {
-            await TokenValidator.CheckTokenValidity();
-            var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("accessToken", string.Empty));
-            var response = await httpClient.GetStringAsync(AppSettings.ApiUrl + "api/Categories");
-            return JsonConvert.DeserializeObject<List<Category>>(response);
+            try
+            {
+                await TokenValidator.CheckTokenValidity();
+                var httpClient = new HttpClient();
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("accessToken", string.Empty));
+                var response = await httpClient.GetStringAsync(AppSettings.ApiUrl + "api/Categories");
+                return JsonConvert.DeserializeObject<List<Category>>(response);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public static async Task<Product> GetProductById(int productId)
@@ -114,7 +122,7 @@ namespace FoodApp.Services
             return true;
         }
 
-        public static async Task<CartSubTotal> GetCartSubTotal(int userId)
+        public static async Task<CartSubTotal> GetCartSubTotal(Guid userId)
         {
             await TokenValidator.CheckTokenValidity();
             var httpClient = new HttpClient();
@@ -123,7 +131,7 @@ namespace FoodApp.Services
             return JsonConvert.DeserializeObject<CartSubTotal>(response);
         }
 
-        public static async Task<List<ShoppingCartItem>> GetShoppingCartItems(int userId)
+        public static async Task<List<ShoppingCartItem>> GetShoppingCartItems(Guid userId)
         {
             await TokenValidator.CheckTokenValidity();
             var httpClient = new HttpClient();
@@ -132,7 +140,7 @@ namespace FoodApp.Services
             return JsonConvert.DeserializeObject<List<ShoppingCartItem>>(response);
         }
 
-        public static async Task<TotalCartItem> GetTotalCartItems(int userId)
+        public static async Task<TotalCartItem> GetTotalCartItems(Guid userId)
         {
             await TokenValidator.CheckTokenValidity();
             var httpClient = new HttpClient();
@@ -141,7 +149,7 @@ namespace FoodApp.Services
             return JsonConvert.DeserializeObject<TotalCartItem>(response);
         }
 
-        public static async Task<bool> ClearShoppingCart(int userId)
+        public static async Task<bool> ClearShoppingCart(Guid userId)
         {
             await TokenValidator.CheckTokenValidity();
             var httpClient = new HttpClient();
@@ -163,7 +171,7 @@ namespace FoodApp.Services
             return JsonConvert.DeserializeObject<OrderResponse>(jsonResult);
         }
 
-        public static async Task<List<OrderByUser>> GetOrdersByUser(int userId)
+        public static async Task<List<OrderByUser>> GetOrdersByUser(Guid userId)
         {
             await TokenValidator.CheckTokenValidity();
             var httpClient = new HttpClient();

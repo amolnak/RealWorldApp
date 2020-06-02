@@ -13,7 +13,7 @@ namespace FoodApp.Models
         public double orderTotal { get; set; }
         public DateTime orderPlaced { get; set; }
         public bool isOrderCompleted { get; set; }
-        public int userId { get; set; }
+        public Guid userId { get; set; }
         public List<OrderDetail> orderDetails { get; set; }
     }
 }

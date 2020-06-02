@@ -26,13 +26,14 @@ namespace FoodApp.Pages
 
         private async void GetTotalPrice()
         {
-            var totalPrice = await ApiService.GetCartSubTotal(Preferences.Get("userId", 0));
+            var totalPrice = await ApiService.GetCartSubTotal(new Guid(Preferences.Get("userId", "")));
             LblTotalPrice.Text = totalPrice.subTotal.ToString();
         }
 
         private async void GetShoppingCartItems()
         {
-            var shoppingCartItems = await ApiService.GetShoppingCartItems(Preferences.Get("userId", 0));
+            Guid amol;
+            var shoppingCartItems = await ApiService.GetShoppingCartItems(new Guid(Preferences.Get("userId", "")));
             foreach (var shoppingCart in shoppingCartItems)
             {
                 ShoppingCartCollection.Add(shoppingCart);
@@ -47,7 +48,7 @@ namespace FoodApp.Pages
 
         private async void TapClearCart_Tapped(object sender, EventArgs e)
         {
-            var response = await ApiService.ClearShoppingCart(Preferences.Get("userId", 0));
+            var response = await ApiService.ClearShoppingCart(new Guid(Preferences.Get("userId", "")));
             if (response)
             {
                 await DisplayAlert("", "Your cart has been cleared", "Alright");

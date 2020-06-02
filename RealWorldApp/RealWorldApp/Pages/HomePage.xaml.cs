@@ -60,7 +60,7 @@ namespace FoodApp.Pages
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            var response = await ApiService.GetTotalCartItems(Preferences.Get("userId", 0));
+            var response = await ApiService.GetTotalCartItems(new Guid(Preferences.Get("userId", "")));
             LblTotalItems.Text = response.totalItems.ToString();
         }
 
@@ -81,7 +81,7 @@ namespace FoodApp.Pages
         {
             var currentSelection = e.CurrentSelection.FirstOrDefault() as Category;
             if (currentSelection == null) return;
-            Navigation.PushModalAsync(new ProductListPage(currentSelection.id,currentSelection.name));
+            Navigation.PushModalAsync(new ProductListPage(currentSelection.id, currentSelection.name));
             ((CollectionView)sender).SelectedItem = null;
         }
 
@@ -116,7 +116,7 @@ namespace FoodApp.Pages
         private void TapLogout_Tapped(object sender, EventArgs e)
         {
             Preferences.Set("accessToken", string.Empty);
-            Preferences.Set("tokenExpirationTime",0);
+            Preferences.Set("tokenExpirationTime", 0);
             Application.Current.MainPage = new NavigationPage(new SignupPage());
         }
     }

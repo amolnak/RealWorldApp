@@ -66,7 +66,7 @@ namespace FoodApp.Pages
             addToCart.Price = LblPrice.Text;
             addToCart.TotalAmount = LblTotalPrice.Text;
             addToCart.ProductId = _productId;
-            addToCart.CustomerId = Preferences.Get("userId", 0);
+            addToCart.CustomerId = new Guid(Preferences.Get("userId", ""));
 
             var response = await ApiService.AddItemsInCart(addToCart);
             if (response)
